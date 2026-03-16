@@ -82,9 +82,12 @@
   .messages::-webkit-scrollbar { width: 5px; }
   .messages::-webkit-scrollbar-thumb { background: #d0d0d0; border-radius: 3px; }
 
-  /* TURN — padding lives here, matching Acrobat's ~20px left gutter */
-  .turn, .turn-dr-discovery { width: 100%; display: flex; flex-direction: column; gap: 10px; padding: 16px 20px; position: relative; border-bottom: 1px solid #ebebeb; }
+  /* TURN — full width, border, no padding (padding on children) */
+  .turn, .turn-dr-discovery { width: 100%; display: flex; flex-direction: column; gap: 10px; padding: 16px 0; position: relative; border-bottom: 1px solid #ebebeb; }
   .turn:last-child, .turn-dr-discovery:last-child { border-bottom: none; }
+
+  /* Constrain and center all direct content inside turns */
+  .msg-user, .msg-ai, .dr-nudge-text, .dr-buttons, .reaction-bar, .search-block { max-width: 860px; width: 100%; margin-left: auto; margin-right: auto; padding-left: 20px; padding-right: 20px; box-sizing: border-box; }
   .turn:last-child, .turn-dr-discovery:last-child { border-bottom: none; }
 
   /* DELETE TURN */
@@ -253,8 +256,8 @@
   body.edit-mode li:hover .bullet-del, body.edit-mode li:focus .bullet-del { display: flex; }
 
   /* ADD TURN */
-  .add-turn-area { display: none; padding: 10px 20px; border-top: 1px dashed #93c5fd; background: #f8fbff; flex-shrink: 0; }
-  .add-turn-area.visible { display: flex; gap: 8px; align-items: center; }
+  .add-turn-area { display: none; border-top: 1px dashed #93c5fd; background: #f8fbff; flex-shrink: 0; justify-content: center; }
+  .add-turn-area.visible { display: flex; gap: 8px; align-items: center; padding: 10px 20px; max-width: 860px; width: 100%; margin: 0 auto; }
   .add-turn-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px; border: 1px dashed #93c5fd; background: #fff; font-family: var(--font); font-size: 12.5px; font-weight: 500; color: #3b82f6; cursor: pointer; transition: background 0.15s; }
   .add-turn-btn:hover { background: #eff6ff; }
   .add-dr-btn { display: flex; align-items: center; gap: 6px; padding: 6px 14px; border-radius: 8px; border: 1px dashed #a78bfa; background: #fff; font-family: var(--font); font-size: 12.5px; font-weight: 500; color: #7c3aed; cursor: pointer; transition: background 0.15s; }
@@ -265,8 +268,8 @@
   .disclaimer a { color: var(--text-muted); text-decoration: underline; }
 
   /* INPUT */
-  .input-area { border-top: 1px solid var(--border); padding: 12px 20px 14px; flex-shrink: 0; background: #fff; }
-  .input-inner { width: 100%; }
+  .input-area { border-top: 1px solid var(--border); padding: 12px 0 14px; flex-shrink: 0; background: #fff; display: flex; justify-content: center; }
+  .input-inner { width: 100%; max-width: 860px; padding: 0 20px; }
   .input-box { border: 1px solid #d0d0d0; border-radius: 12px; overflow: hidden; background: #fff; display: flex; flex-direction: column; }
   .input-textarea { width: 100%; min-height: 48px; max-height: 120px; padding: 12px 14px 4px; border: none; outline: none; resize: none; font-family: var(--font); font-size: 13.5px; color: var(--text-primary); background: transparent; line-height: 1.5; }
   .input-textarea::placeholder { color: var(--text-muted); }
@@ -371,6 +374,7 @@
               <div class="bubble-user" data-editable="question">Can you revise "The Hilton Effect" paper to make it more engaging and convincing?</div>
             </div>
             <div class="msg-ai">
+              <div class="ai-response-title" data-editable="text">Recommendations for "The Hilton Effect"</div>
               <p class="ai-text" data-editable="text">The document titled "The Hilton Effect" is a comprehensive exploration of Hilton's history, its impact on the travel industry, and its role in shaping modern hospitality. To make the paper more engaging and convincing, the following revisions are recommended:</p>
 
               <div class="ai-section">
